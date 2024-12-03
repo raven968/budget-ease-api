@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username'
     ];
 
     /**
@@ -57,16 +58,5 @@ class User extends Authenticatable
     public function checkPassword(string $password): bool
     {
         return \App::environment('local') || Hash::check($password, $this->password);
-    }
-
-    /**
-     * Provide a new user token
-     *
-     * @param string $device_name The name of the curren device
-     * @return string The new user token
-     */
-    public function getToken(string $device_name): string
-    {
-        return $this->createToken($device_name)->plainTextToken;
     }
 }
